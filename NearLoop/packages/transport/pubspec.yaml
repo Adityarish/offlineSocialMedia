@@ -1,0 +1,12 @@
+name: transport
+publish_to: none
+version: 0.1.0
+environment:
+  sdk: ">=3.10.0-0 <4.0.0"
+dependencies:
+  crypto: 3.0.6
+  cryptography: 2.9.0
+  protocol:
+    path: ../protocol
+  local_store:
+    path: ../local_store

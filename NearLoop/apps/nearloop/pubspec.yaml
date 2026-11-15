@@ -1,0 +1,37 @@
+name: nearloop
+publish_to: none
+version: 0.2.0+2
+environment:
+  sdk: '>=3.10.0-0 <4.0.0'
+dependencies:
+  flutter:
+    sdk: flutter
+  protocol:
+    path: ../../packages/protocol
+  local_store:
+    path: ../../packages/local_store
+  transport:
+    path: ../../packages/transport
+  flutter_secure_storage: 10.3.4
+  path_provider: 2.1.5
+  file_picker: 10.3.3
+  nsd: 5.0.0
+  qr_flutter: 4.1.0
+  cryptography: 2.9.0
+  crypto: 3.0.6
+  sqlite3_flutter_libs: 0.5.40
+  basic_utils: 5.8.2
+  pointycastle: 4.0.0
+dependency_overrides:
+  nsd_ios:
+    path: ../../third_party/nsd_ios
+  # nsd_macos 3.0.0 needs Flutter's SwiftPM directory and product naming.
+  nsd_macos:
+    path: ../../third_party/nsd_macos
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+flutter:
+  uses-material-design: true

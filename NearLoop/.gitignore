@@ -1,0 +1,73 @@
+# Local SDKs, generated output and package caches
+.toolchains/
+.dart_tool/
+.pub-cache/
+.pub/
+.flutter-plugins*
+build/
+.build/
+coverage/
+/release/
+.gradle/
+.cxx/
+Pods/
+.symlinks/
+.swiftpm/
+DerivedData/
+SourcePackages/
+**/Flutter/ephemeral/
+**/flutter/ephemeral/
+local.properties
+Generated.xcconfig
+flutter_export_environment.sh
+
+# Local editor, OS and Python files
+.DS_Store
+._*
+.idea/
+*.iml
+*.ipr
+*.iws
+xcuserdata/
+*.xcuserstate
+*.log
+*.swp
+*.swo
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Private configuration and signing material
+.env
+.env.*
+!.env.example
+!.env.sample
+!.env.template
+flutter-env.sh
+key.properties
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.mobileprovision
+*.provisionprofile
+
+# Local app data and exported binaries
+*.sqlite*
+*.db
+*.db-shm
+*.db-wal
+*.apk
+*.aab
+*.ipa
+*.app/
+*.dSYM/
+app.*.symbols
+app.*.map.json
+
+# Keep dependency lockfiles, native project sources, assets and the Gradle
+# wrapper in Git so another checkout can reproduce the build.

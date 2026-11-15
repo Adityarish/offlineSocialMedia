@@ -1,0 +1,57 @@
+name: Native validation
+on: [push, pull_request, workflow_dispatch]
+jobs:
+  validate:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            target: android
+          - os: macos-latest
+            target: macos
+          - os: macos-latest
+            target: ios
+          - os: windows-latest
+            target: windows
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.38.0'
+          channel: stable
+      - run: python scripts/bootstrap.py
+      - run: python tests/test_schema.py
+      - run: dart format apps/nearloop/lib apps/nearloop/test packages
+      - if: runner.os != 'Windows'
+        run: bash scripts/build.sh ${{ matrix.target }}
+      - if: runner.os == 'Windows'
+        run: ./scripts/build.ps1 windows
+      - uses: actions/upload-artifact@v4
+        with:
+          name: validation-${{ matrix.target }}
+          if-no-files-found: error
+          path: |
+            apps/nearloop/build/app/outputs/flutter-apk/app-debug.apk
+            apps/nearloop/build/macos/Build/Products/Debug/*.app
+            apps/nearloop/build/ios/iphonesimulator/Runner.app
+            apps/nearloop/build/windows/x64/runner/Release/
+  aggregate:
+    needs: validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: validation-bundles
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nearloop-validation-bundles-not-signed-distribution
+          path: validation-bundles

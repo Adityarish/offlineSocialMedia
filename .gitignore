@@ -1,0 +1,15 @@
+.toolchains/
+.build/
+/flutter-env.sh
+.DS_Store
+._*
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.log
+.env
+.env.*
+!.env.example
+!.env.sample
+!.env.template
